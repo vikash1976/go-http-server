@@ -1,0 +1,103 @@
+<html ng-app="disputeIppApp">
+
+<head>
+    <style>
+        div.ex {
+            width: 768px;
+            padding: 10px;
+            border: 2px solid gray;
+            margin-left: 10px;
+            border-style: outset;
+        }
+        
+        .css-form input.ng-invalid.ng-dirty {
+            background-color: pink;
+        }
+        
+        .css-form input.ng-pattern.ng-dirty {
+            background-color: blue;
+        }
+        
+        .css-form input.ng-valid.ng-dirty {
+            background-color: lightgreen;
+        }
+        
+        .fourBy20 {
+            width: 250px;
+            height: 35px;
+        }
+    </style>
+    <script type="text/javascript">
+        var urlParam = function(name) {
+            var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+            if (!results) {
+                return 0;
+            }
+            return results[1] || 0;
+        };
+        var processPortalClient = function() {
+            var url = urlParam('ippPortalBaseUri') + "/plugins/processportal/IppProcessPortalClient.js";
+            console.log("url: " + url);
+            if (url) {
+                var script = document.querySelector("script[src*='" + url + "']");
+                if (!script) {
+                    var heads = document.getElementsByTagName("head");
+                    if (heads && heads.length) {
+                        var head = heads[0];
+                        if (head) {
+                            script = document.createElement('script');
+                            script.setAttribute('src', url);
+                            script.setAttribute('type', "text/javascript");
+                            //if (charset) script.setAttribute('charset', charset);
+                            head.appendChild(script);
+                        }
+                    }
+                }
+                return script;
+            }
+        }
+        
+    </script>
+    
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="stylesheets/main.css">    
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-resource.min.js"></script>
+    
+    <script src="js/xml2json.js">
+    </script>
+    <script src="js/ui-mashup-utils.js">
+    </script>
+    <script src="js/showDispute.js">
+    </script>
+</head>
+
+<body ng-controller="disputeController" onload="processPortalClient()">
+    <div ng-form name="masterForm" class="css-form">
+        <div class="container">
+            <div>
+                <label>Dispute ID:</label>
+                <input type="text" class="form-control" ng-model="Dispute.disputeID" ng-disabled="true">
+            </div>
+            <div>
+                <label> Dispute Description:</label>
+                <textarea class="form-control" ng-Model="Dispute.description" name="remarks" type="text" ng-maxlength="50"></textarea>
+            </div>
+            <div>
+                <button class="btn btn-primary" ng-click="saveDispute()">Save and Submit</button>
+                <button class="btn btn-default" ng-click="suspendDispute()">Save and Suspend</button>
+            </div>
+            <div class="footer">
+                <p>This app is served by Google's Go lang Http Server</p>
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+</body>
+
+</html>
