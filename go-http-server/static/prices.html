@@ -1,0 +1,36 @@
+<!doctype html>
+<html ng-app="pricesApp">
+<head>
+  <meta charset="utf-8">
+  <title>Price Details</title>
+  <link rel="stylesheet" href="/static/stylesheets/main.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-resource.min.js"></script>
+    <script src="js/prices.js"></script>
+</head>
+<body class="css-form container" ng-controller="pricesCtrl">
+  <h2>Price Details</h2>
+  <div>
+    <ul ng-repeat="price in prices">
+      <li class="badge" ng-class="{selected: price==selectedPrice}" ng-click="onSelect(price)">{{price.tick}} - {{price.price}}</li>
+    </ul>
+  </div>
+  
+   
+   <div ng-if="selectedPrice">
+     <input type="number" step="0.01" ng-model="selectedPrice.price"/>
+                
+   </div>
+   <div>
+     <button class="btn btn-primary" ng-click="onPriceChange()">Update</button>
+                
+   </div>
+   <div class="footer">
+   <p>This app is served by Google's Go lang Http Server</p>
+ </div>
+</body>
+</html>
