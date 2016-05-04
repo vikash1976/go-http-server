@@ -17,10 +17,7 @@ pricesApp.controller('pricesCtrl', ['$scope', '$http', '$window',
             
         ];
         
-        $scope.selectedPrice = {
-            "tick" : "",
-            "price" : 0
-        };
+       
         $scope.onSelect = function(price){
             $scope.selectedPrice = price;
             $scope.selectedPrice.price = parseFloat(price.price);
