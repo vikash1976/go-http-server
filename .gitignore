@@ -1,0 +1,10 @@
+# WebStorm
+*.iml
+
+# Directory-based project format:
+.idea/
+.idea/workspace.xml
+**/.idea/workspace.xml
+
+**/*.txt
+**/*.vscode
