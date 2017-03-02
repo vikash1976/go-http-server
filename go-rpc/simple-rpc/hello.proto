@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package hello;
+
+service HelloWorld {
+    rpc SayHello(ToWhom) returns (Greeting) {}
+    rpc SayMoreHellos(ToWhom) returns (stream Greeting) {}
+    rpc SayHelloToMany(stream ToWhom) returns (Greeting) {}
+    rpc LetsTalk(stream ToWhom) returns (stream Greeting) {}
+}
+message ToWhom {
+    string name = 1;
+}
+
+message Greeting {
+    string greetMessage = 1;
+}

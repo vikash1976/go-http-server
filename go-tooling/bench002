@@ -1,0 +1,3 @@
+BenchmarkHandler-4   	  500000	      2778 ns/op
+PASS
+ok  	github.com/vikash1976/go-tooling	2.013s

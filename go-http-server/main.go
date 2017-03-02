@@ -19,7 +19,7 @@ type Price struct {
 
 //Prices Structure
 type Prices struct {
-	SymbolInfo []Price `json:"symbolInfo"`
+	SymbolInfo []Price `json:"price"`
 }
 
 
@@ -75,6 +75,7 @@ func HomeHandler(rw http.ResponseWriter, r *http.Request, p httprouter.Params) {
 
 // Handler function for /prices route
 func PricesIndexHandler(rw http.ResponseWriter, r *http.Request, p httprouter.Params) {
+	log.Println("In Prices", r.URL)
 	prices := make([]Price, 2)
 	
 	prices = append(prices, Price{"FIS", 56.87})
@@ -97,6 +98,7 @@ func PricesIndexHandler(rw http.ResponseWriter, r *http.Request, p httprouter.Pa
 	rw.Header().Set("Access-Control-Allow-Origin", "*")
 
 	io.WriteString(rw, string(jsonPrices))
+	log.Println("Done Prices")
 }
 
 // Handler function for /prices:id route

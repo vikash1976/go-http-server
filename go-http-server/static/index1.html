@@ -1,0 +1,611 @@
+<html>
+   <head>
+      <script>
+         function injectJS(head, src) {
+             var script = document.createElement('script');
+             script.src = src;
+             head.appendChild(script);
+         }
+         function injectCSS(head, src) {
+             var link = document.createElement('link');
+             link.href = src;
+             link.rel = 'stylesheet';
+             link.type = 'text/css';
+             head.appendChild(link);
+         }
+         function addStyle(head, contents) {
+             var style = document.createElement('style');
+             style.type = 'text/css';
+             if (style.styleSheet) {
+                 style.styleSheet.cssText = contents;
+             } else {
+                 style.appendChild(document.createTextNode(contents));
+             }
+             head.appendChild(style);
+         }
+         function mobilecheck() {
+          	var check = false;
+          	(function(a){if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(a)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0,4)))check = true})(navigator.userAgent||navigator.vendor||window.opera);
+         	return check;
+         }
+         var isMobile = false && mobilecheck();
+         function initialize() {
+                     var requireConfigPaths = {
+                  'jquery' : [ 'views-common/js/libs/jquery/jquery-1.7.2.min',
+                  '//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min' ],
+                  'jquery-ui' : ['views-common/js/libs/jquery/plugins/jquery-ui-1.10.2.min',
+               '//ajax.googleapis.com/ajax/libs/jqueryui/1.8.19/jquery-ui.min' ],
+                  'json' : [ 'views-common/js/libs/json/json2',
+                  '//cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2' ],
+               'jquery.url' : [
+                     'views-common/js/libs/jquery/plugins/jquery.url',
+                  'https://raw.github.com/allmarkedup/jQuery-URL-Parser/4f5254f2519111ad7037d398b2efa61d3cda58d4/jquery.url' ],
+               'angularjs' : [
+                              '../portal-shell/js/libs/angular/1.2.11/angular',
+                  '//ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min' ],
+          'xml2json' : [ 'processportal/xml2js' ],
+             'bpm.portal.Interaction' : [ 'processportal/js/Interaction' ],
+             'bpm.portal.GenericAngularApp' : [ 'processportal/js/GenericAngularApp' ],
+             'bpm.portal.GenericController' : [ 'processportal/js/GenericController' ],
+             'bpm.portal.UIMashupController' : [ 'processportal/js/UIMashupController' ]
+                        };
+                     if (isMobile) {
+                     	requireConfigPaths['jquery-mobile'] = ['mobile-workflow/public/js/libs/jquery/plugins/jquery.mobile-1.4.0', '//code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0'];
+                     }
+                     var requireConfigShim = {
+               'jquery-ui' : [ 'jquery' ],
+               'jquery.url' : [ 'jquery' ],
+               'angularjs' : {
+                  deps : ['jquery'],
+                  exports : 'angular'
+               },
+               'bpm.portal.Interaction' : [ 'jquery' ],
+                  'bpm.portal.GenericAngular' : [ 'jquery' ],
+                  'bpm.portal.GenericController' : [ 'jquery' ],
+                  'bpm.portal.UIMashupController' : [ 'jquery' ]
+                        };
+                     if (isMobile) {
+                     	requireConfigShim['jquery-mobile'] = ['jquery'];
+                       requireConfigShim['bpm.portal.Interaction'] = [ 'jquery', 'jquery-mobile' ];
+                       requireConfigShim['bpm.portal.GenericAngular'] = [ 'jquery', 'jquery-mobile' ];
+                       requireConfigShim['bpm.portal.GenericController'] = [ 'jquery', 'jquery-mobile' ];
+                       requireConfigShim['bpm.portal.UIMashupController'] = [ 'jquery', 'jquery-mobile' ];
+            }
+                     require.config({waitSeconds: 0, baseUrl : baseUrl + '/plugins/',
+                        paths : requireConfigPaths,
+                        shim : requireConfigShim
+         });
+                     var mashupDeps = [ 'require', 'jquery', 'jquery-ui', 'json', 'jquery.url', 'angularjs',
+                        'xml2json', 'bpm.portal.Interaction', 'bpm.portal.GenericAngularApp', 'bpm.portal.GenericController', 'bpm.portal.UIMashupController' ];
+                     if (isMobile) {
+                     	mashupDeps.push('jquery-mobile');
+                     }
+                     require(mashupDeps, function(require, jquery, jqueryUi,
+            json, jqueryUrl, angularjs, xml2json, stardustPortalInteraction, stardustGenericController) {
+                     uiMashupController = new bpm.portal.UIMashupController();
+                     uiMashupController.init();
+               });
+         }
+         function waitToLoad() {
+             if (!window['require']) {
+                 window.setTimeout(function() {
+                     waitToLoad();
+                 }, 300);
+             } else {
+                 initialize();
+             }
+         }
+         var baseUrl = window.location.search;
+         baseUrl = baseUrl.substring(baseUrl.indexOf('ippInteractionUri') + 18);
+         baseUrl = baseUrl.indexOf('&') >= 0 ? baseUrl.substring(0, baseUrl.indexOf('&')) : baseUrl;
+         baseUrl = baseUrl.substring(0, baseUrl.indexOf('/services'));
+         var head = document.getElementsByTagName('head')[0];
+         injectJS(head, baseUrl + '/plugins/views-common/js/libs/require/2.1.15/require.min.js');
+         injectJS(head, baseUrl + '/plugins/processportal/js/manualActivityServerSupport.js');
+         injectCSS(head, baseUrl + '/plugins/views-common/css/thirdparty/jquery/jquery-ui-1.10.2.custom.css');
+         injectCSS(head, baseUrl + '/plugins/html5-common/styles/3rd-party/font-awesome/4.4.0/css/font-awesome.min.css');
+         injectCSS(head, baseUrl + '/plugins/html5-common/styles/portal-icons.css');
+         injectCSS(head, baseUrl + '/plugins/processportal/css/bpm-form.css');
+                  if (isMobile) {
+                  	injectCSS(head, baseUrl + '/plugins/mobile-workflow/public/css/jquery.mobile/jquery.mobile-1.4.0.css');
+                  	injectCSS(head, baseUrl + '/plugins/processportal/css/manual-activity-mobile.css');
+                  } else {
+                  	injectCSS(head, baseUrl + '/plugins/mobile-workflow/public/css/jquery.mobile/jquery.mobile-1.4.0.css');
+         injectCSS(head, baseUrl + '/plugins/processportal/css/manual-activity.css');
+                  }
+         addStyle(head, '[ng\\:cloak], [ng-cloak], .ng-cloak {display: none;}');
+         waitToLoad();
+      </script>
+   </head>
+   <body>
+      <div ng-controller='ManualActivityCtrl' class='ng-cloak'>
+         <div class='hideIfMobile'>
+            <div class='metaData' style='display: none' data-dataMappings='[{"id":"CustData","name":"CustData","fullXPath":"/CustData","readonly":false,"typeName":"Customer","isPrimitive":false,"isList":false,"isEnum":false,"children":[{"id":"FName","name":"FName","fullXPath":"/CustData/FName","readonly":false,"typeName":"string","isPrimitive":true,"isList":false,"isEnum":false,"properties":{"InputPreferences_label":"First Name","InputPreferences_mandatory":"true"}},{"id":"MName","name":"MName","fullXPath":"/CustData/MName","readonly":false,"typeName":"string","isPrimitive":true,"isList":false,"isEnum":false,"properties":{"InputPreferences_mandatory":"true","InputPreferences_label":"Middle Name"}},{"id":"LName","name":"LName","fullXPath":"/CustData/LName","readonly":false,"typeName":"string","isPrimitive":true,"isList":false,"isEnum":false,"properties":{"InputPreferences_label":"Last Name","InputPreferences_mandatory":"true"}},{"id":"Suffix","name":"Suffix","fullXPath":"/CustData/Suffix","readonly":false,"typeName":"Suffix","isPrimitive":true,"isList":false,"isEnum":true,"properties":{},"enumValues":["Sr.","Jr.","I","II","III","IV"]},{"id":"PreviousLName","name":"PreviousLName","fullXPath":"/CustData/PreviousLName","readonly":false,"typeName":"string","isPrimitive":true,"isList":false,"isEnum":false,"properties":{}},{"id":"DOB","name":"DOB","fullXPath":"/CustData/DOB","readonly":false,"typeName":"date","isPrimitive":true,"isList":false,"isEnum":false,"properties":{"InputPreferences_label":"Date of Birth:","InputPreferences_mandatory":"true"}},{"id":"SSN","name":"SSN","fullXPath":"/CustData/SSN","readonly":false,"typeName":"string","isPrimitive":true,"isList":false,"isEnum":false,"properties":{"InputPreferences_label":"U.S. SSN :","InputPreferences_mandatory":"true"}},{"id":"SSN_A","name":"SSN_A","fullXPath":"/CustData/SSN_A","readonly":false,"typeName":"string","isPrimitive":true,"isList":false,"isEnum":false,"properties":{"InputPreferences_mandatory":"true","InputPreferences_label":"Verify SSN :"}},{"id":"DL","name":"DL","fullXPath":"/CustData/DL","readonly":false,"typeName":"DLDetails","isPrimitive":false,"isList":false,"isEnum":false,"children":[{"id":"Number","name":"Number","fullXPath":"/CustData/DL/Number","readonly":false,"typeName":"string","isPrimitive":true,"isList":false,"isEnum":false,"properties":{"InputPreferences_label":"Number:","InputPreferences_mandatory":"true"}},{"id":"StateOfIssuance","name":"StateOfIssuance","fullXPath":"/CustData/DL/StateOfIssuance","readonly":false,"typeName":"State","isPrimitive":true,"isList":false,"isEnum":true,"properties":{"InputPreferences_label":"State of Issuance:"},"enumValues":["AL","AK","CA","CO","HI","IA","NY"]}],"properties":{}},{"id":"Email","name":"Email","fullXPath":"/CustData/Email","readonly":false,"typeName":"string","isPrimitive":true,"isList":false,"isEnum":false,"properties":{"InputPreferences_label":"Email Address:"}},{"id":"ChexConsID","name":"ChexConsID","fullXPath":"/CustData/ChexConsID","readonly":false,"typeName":"string","isPrimitive":true,"isList":false,"isEnum":false,"properties":{"InputPreferences_label":"ChexSystem Consumer ID (if any):"}},{"id":"Address","name":"Address","fullXPath":"/CustData/Address","readonly":false,"typeName":"Address","isPrimitive":false,"isList":false,"isEnum":false,"children":[{"id":"Address1","name":"Address1","fullXPath":"/CustData/Address/Address1","readonly":false,"typeName":"string","isPrimitive":true,"isList":false,"isEnum":false,"properties":{"InputPreferences_label":"Address Line 1:","InputPreferences_mandatory":"true"}},{"id":"Address2","name":"Address2","fullXPath":"/CustData/Address/Address2","readonly":false,"typeName":"string","isPrimitive":true,"isList":false,"isEnum":false,"properties":{"InputPreferences_label":"Address Line 1:"}},{"id":"City","name":"City","fullXPath":"/CustData/Address/City","readonly":false,"typeName":"string","isPrimitive":true,"isList":false,"isEnum":false,"properties":{"InputPreferences_label":"City:","InputPreferences_mandatory":"true"}},{"id":"State","name":"State","fullXPath":"/CustData/Address/State","readonly":false,"typeName":"State","isPrimitive":true,"isList":false,"isEnum":true,"properties":{"InputPreferences_mandatory":"true"},"enumValues":["AL","AK","CA","CO","HI","IA","NY"]},{"id":"Zip","name":"Zip","fullXPath":"/CustData/Address/Zip","readonly":false,"typeName":"string","isPrimitive":true,"isList":false,"isEnum":false,"properties":{"InputPreferences_mandatory":"true","InputPreferences_label":"Postal Code +4:"}},{"id":"Telephone","name":"Telephone","fullXPath":"/CustData/Address/Telephone","readonly":false,"typeName":"string","isPrimitive":true,"isList":false,"isEnum":false,"properties":{"InputPreferences_mandatory":"true","InputPreferences_label":"Telephone:"}}],"properties":{}},{"id":"PreviousAddress","name":"PreviousAddress","fullXPath":"/CustData/PreviousAddress","readonly":false,"typeName":"Address","isPrimitive":false,"isList":true,"isEnum":false,"children":[{"id":"Address1","name":"Address1","fullXPath":"/CustData/PreviousAddress/Address1","readonly":false,"typeName":"string","isPrimitive":true,"isList":false,"isEnum":false,"properties":{"InputPreferences_label":"Address Line 1:","InputPreferences_mandatory":"true"}},{"id":"Address2","name":"Address2","fullXPath":"/CustData/PreviousAddress/Address2","readonly":false,"typeName":"string","isPrimitive":true,"isList":false,"isEnum":false,"properties":{"InputPreferences_label":"Address Line 1:"}},{"id":"City","name":"City","fullXPath":"/CustData/PreviousAddress/City","readonly":false,"typeName":"string","isPrimitive":true,"isList":false,"isEnum":false,"properties":{"InputPreferences_label":"City:","InputPreferences_mandatory":"true"}},{"id":"State","name":"State","fullXPath":"/CustData/PreviousAddress/State","readonly":false,"typeName":"State","isPrimitive":true,"isList":false,"isEnum":true,"properties":{"InputPreferences_mandatory":"true"},"enumValues":["AL","AK","CA","CO","HI","IA","NY"]},{"id":"Zip","name":"Zip","fullXPath":"/CustData/PreviousAddress/Zip","readonly":false,"typeName":"string","isPrimitive":true,"isList":false,"isEnum":false,"properties":{"InputPreferences_mandatory":"true","InputPreferences_label":"Postal Code +4:"}},{"id":"Telephone","name":"Telephone","fullXPath":"/CustData/PreviousAddress/Telephone","readonly":false,"typeName":"string","isPrimitive":true,"isList":false,"isEnum":false,"properties":{"InputPreferences_mandatory":"true","InputPreferences_label":"Telephone:"}}],"properties":{}}],"properties":{}}]' data-binding='{"CustData":{"FName":"","MName":"","LName":"","Suffix":"","PreviousLName":"","DOB":"","SSN":"","SSN_A":"","DL":{"Number":"","StateOfIssuance":""},"Email":"","ChexConsID":"","Address":{"Address1":"","Address2":"","City":"","State":"","Zip":"","Telephone":""},"PreviousAddress":[]}}'></div>
+
+            <form name="form">
+  <div class="panel-main">
+    <div class="panel-validation-summary-bar" ng-show="form.$invalid">
+      <span class="fa fa-exclamation-triangle panel-validation-summary-bar-img"></span>
+      <span class="panel-validation-summary-bar-text">Please correct the fields highlighted below.</span>
+    </div>
+    <div class="panel-struct">
+      <div class="panel-header">Cust Data</div>
+      <div class="panel-nested-container">
+        <table cellpadding="0" cellspacing="0" class="panel-primitive-container">
+          <tbody>
+            <tr>
+              <td class="panel-primitive-container-cell">
+                <table cellpadding="0" cellspacing="0">
+                  <tbody>
+                    <tr class="panel-primitive-row">
+                      <td class="panel-label-column">
+                        <div>
+                          <label class="panel-label">First Name</label>
+                          <label class="panel-label-mandatory-mark">*</label>
+                        </div>
+                      </td>
+                      <td class="panel-prefix-column"></td>
+                      <td class="panel-input-column">
+                        <div class="panel-wrapper">
+                          <input ng-model-onblur type="text" class="panel-input" id="id35982" name="id35982" ng-required="true" ng-class="{'panel-input-highlight' : form['id35982'].$invalid}" ng-model="dm['CustData']['FName']"></input>
+                        </div>
+                      </td>
+                      <td class="panel-suffix-column"></td>
+                      <td class="panel-validation-image-column"></td>
+                    </tr>
+                    <tr class="panel-primitive-row">
+                      <td class="panel-label-column">
+                        <div>
+                          <label class="panel-label">Middle Name</label>
+                          <label class="panel-label-mandatory-mark">*</label>
+                        </div>
+                      </td>
+                      <td class="panel-prefix-column"></td>
+                      <td class="panel-input-column">
+                        <div class="panel-wrapper">
+                          <input ng-model-onblur type="text" class="panel-input" id="id47735" name="id47735" ng-required="true" ng-class="{'panel-input-highlight' : form['id47735'].$invalid}" ng-model="dm['CustData']['MName']"></input>
+                        </div>
+                      </td>
+                      <td class="panel-suffix-column"></td>
+                      <td class="panel-validation-image-column"></td>
+                    </tr>
+                    <tr class="panel-primitive-row">
+                      <td class="panel-label-column">
+                        <div>
+                          <label class="panel-label">Last Name</label>
+                          <label class="panel-label-mandatory-mark">*</label>
+                        </div>
+                      </td>
+                      <td class="panel-prefix-column"></td>
+                      <td class="panel-input-column">
+                        <div class="panel-wrapper">
+                          <input ng-model-onblur type="text" class="panel-input" id="id67956" name="id67956" ng-required="true" ng-class="{'panel-input-highlight' : form['id67956'].$invalid}" ng-model="dm['CustData']['LName']"></input>
+                        </div>
+                      </td>
+                      <td class="panel-suffix-column"></td>
+                      <td class="panel-validation-image-column"></td>
+                    </tr>
+                    <tr class="panel-primitive-row">
+                      <td class="panel-label-column">
+                        <div>
+                          <label class="panel-label panel-label-padded">Suffix</label>
+                        </div>
+                      </td>
+                      <td class="panel-prefix-column"></td>
+                      <td class="panel-input-column">
+                        <select ng-model-onblur class="panel-select" ng-model="dm['CustData']['Suffix']">
+                          <option value="Sr.">Sr.</option>
+                          <option value="Jr.">Jr.</option>
+                          <option value="I">I</option>
+                          <option value="II">II</option>
+                          <option value="III">III</option>
+                          <option value="IV">IV</option>
+                        </select>
+                      </td>
+                      <td class="panel-suffix-column"></td>
+                      <td class="panel-validation-image-column"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="panel-primitive-container-cell">
+                <table cellpadding="0" cellspacing="0">
+                  <tbody>
+                    <tr class="panel-primitive-row">
+                      <td class="panel-label-column">
+                        <div>
+                          <label class="panel-label panel-label-padded">Previous L Name</label>
+                        </div>
+                      </td>
+                      <td class="panel-prefix-column"></td>
+                      <td class="panel-input-column">
+                        <div class="panel-wrapper">
+                          <input ng-model-onblur type="text" class="panel-input" ng-model="dm['CustData']['PreviousLName']"></input>
+                        </div>
+                      </td>
+                      <td class="panel-suffix-column"></td>
+                      <td class="panel-validation-image-column"></td>
+                    </tr>
+                    <tr class="panel-primitive-row">
+                      <td class="panel-label-column">
+                        <div>
+                          <label class="panel-label">Date of Birth:</label>
+                          <label class="panel-label-mandatory-mark">*</label>
+                        </div>
+                      </td>
+                      <td class="panel-prefix-column"></td>
+                      <td class="panel-input-column">
+                        <div class="panel-wrapper">
+                          <input ng-model-onblur type="text" sd-date="date" class="panel-input" maxlength="10" id="id94071" name="id94071" ng-required="true" ng-class="{'panel-input-highlight' : form['id94071'].$invalid}" ng-model="dm['CustData']['DOB']"></input>
+                          <div class="panel-invalid-msg " ng-show="form['id94071'].$error.date">Invalid date</div>
+                        </div>
+                      </td>
+                      <td class="panel-suffix-column"></td>
+                      <td class="panel-validation-image-column"></td>
+                    </tr>
+                    <tr class="panel-primitive-row">
+                      <td class="panel-label-column">
+                        <div>
+                          <label class="panel-label">U.S. SSN :</label>
+                          <label class="panel-label-mandatory-mark">*</label>
+                        </div>
+                      </td>
+                      <td class="panel-prefix-column"></td>
+                      <td class="panel-input-column">
+                        <div class="panel-wrapper">
+                          <input ng-model-onblur type="text" class="panel-input" id="id31458" name="id31458" ng-required="true" ng-class="{'panel-input-highlight' : form['id31458'].$invalid}" ng-model="dm['CustData']['SSN']"></input>
+                        </div>
+                      </td>
+                      <td class="panel-suffix-column"></td>
+                      <td class="panel-validation-image-column"></td>
+                    </tr>
+                    <tr class="panel-primitive-row">
+                      <td class="panel-label-column">
+                        <div>
+                          <label class="panel-label">Verify SSN :</label>
+                          <label class="panel-label-mandatory-mark">*</label>
+                        </div>
+                      </td>
+                      <td class="panel-prefix-column"></td>
+                      <td class="panel-input-column">
+                        <div class="panel-wrapper">
+                          <input ng-model-onblur type="text" class="panel-input" id="id10573" name="id10573" ng-required="true" ng-class="{'panel-input-highlight' : form['id10573'].$invalid}" ng-model="dm['CustData']['SSN_A']"></input>
+                        </div>
+                      </td>
+                      <td class="panel-suffix-column"></td>
+                      <td class="panel-validation-image-column"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="panel-struct">
+          <div class="panel-header">D L</div>
+          <div class="panel-nested-container">
+            <table cellpadding="0" cellspacing="0" class="panel-primitive-container">
+              <tbody>
+                <tr>
+                  <td class="panel-primitive-container-cell">
+                    <table cellpadding="0" cellspacing="0">
+                      <tbody>
+                        <tr class="panel-primitive-row">
+                          <td class="panel-label-column">
+                            <div>
+                              <label class="panel-label">Number:</label>
+                              <label class="panel-label-mandatory-mark">*</label>
+                            </div>
+                          </td>
+                          <td class="panel-prefix-column"></td>
+                          <td class="panel-input-column">
+                            <div class="panel-wrapper">
+                              <input ng-model-onblur type="text" class="panel-input" id="id17713" name="id17713" ng-required="true" ng-class="{'panel-input-highlight' : form['id17713'].$invalid}" ng-model="dm['CustData']['DL']['Number']"></input>
+                            </div>
+                          </td>
+                          <td class="panel-suffix-column"></td>
+                          <td class="panel-validation-image-column"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                  <td class="panel-primitive-container-cell">
+                    <table cellpadding="0" cellspacing="0">
+                      <tbody>
+                        <tr class="panel-primitive-row">
+                          <td class="panel-label-column">
+                            <div>
+                              <label class="panel-label panel-label-padded">State of Issuance:</label>
+                            </div>
+                          </td>
+                          <td class="panel-prefix-column"></td>
+                          <td class="panel-input-column">
+                            <select ng-model-onblur class="panel-select" ng-model="dm['CustData']['DL']['StateOfIssuance']">
+                              <option value="AL">AL</option>
+                              <option value="AK">AK</option>
+                              <option value="CA">CA</option>
+                              <option value="CO">CO</option>
+                              <option value="HI">HI</option>
+                              <option value="IA">IA</option>
+                              <option value="NY">NY</option>
+                            </select>
+                          </td>
+                          <td class="panel-suffix-column"></td>
+                          <td class="panel-validation-image-column"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <table cellpadding="0" cellspacing="0" class="panel-primitive-container">
+          <tbody>
+            <tr>
+              <td class="panel-primitive-container-cell">
+                <table cellpadding="0" cellspacing="0">
+                  <tbody>
+                    <tr class="panel-primitive-row">
+                      <td class="panel-label-column">
+                        <div>
+                          <label class="panel-label panel-label-padded">Email Address:</label>
+                        </div>
+                      </td>
+                      <td class="panel-prefix-column"></td>
+                      <td class="panel-input-column">
+                        <div class="panel-wrapper">
+                          <input ng-model-onblur type="text" class="panel-input" ng-model="dm['CustData']['Email']"></input>
+                        </div>
+                      </td>
+                      <td class="panel-suffix-column"></td>
+                      <td class="panel-validation-image-column"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="panel-primitive-container-cell">
+                <table cellpadding="0" cellspacing="0">
+                  <tbody>
+                    <tr class="panel-primitive-row">
+                      <td class="panel-label-column">
+                        <div>
+                          <label class="panel-label panel-label-padded">ChexSystem Consumer ID (if any):</label>
+                        </div>
+                      </td>
+                      <td class="panel-prefix-column"></td>
+                      <td class="panel-input-column">
+                        <div class="panel-wrapper">
+                          <input ng-model-onblur type="text" class="panel-input" ng-model="dm['CustData']['ChexConsID']"></input>
+                        </div>
+                      </td>
+                      <td class="panel-suffix-column"></td>
+                      <td class="panel-validation-image-column"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="panel-struct">
+          <div class="panel-header">Address</div>
+          <div class="panel-nested-container">
+            <table cellpadding="0" cellspacing="0" class="panel-primitive-container">
+              <tbody>
+                <tr>
+                  <td class="panel-primitive-container-cell">
+                    <table cellpadding="0" cellspacing="0">
+                      <tbody>
+                        <tr class="panel-primitive-row">
+                          <td class="panel-label-column">
+                            <div>
+                              <label class="panel-label">Address Line 1:</label>
+                              <label class="panel-label-mandatory-mark">*</label>
+                            </div>
+                          </td>
+                          <td class="panel-prefix-column"></td>
+                          <td class="panel-input-column">
+                            <div class="panel-wrapper">
+                              <input ng-model-onblur type="text" class="panel-input" id="id63825" name="id63825" ng-required="true" ng-class="{'panel-input-highlight' : form['id63825'].$invalid}" ng-model="dm['CustData']['Address']['Address1']"></input>
+                            </div>
+                          </td>
+                          <td class="panel-suffix-column"></td>
+                          <td class="panel-validation-image-column"></td>
+                        </tr>
+                        <tr class="panel-primitive-row">
+                          <td class="panel-label-column">
+                            <div>
+                              <label class="panel-label panel-label-padded">Address Line 1:</label>
+                            </div>
+                          </td>
+                          <td class="panel-prefix-column"></td>
+                          <td class="panel-input-column">
+                            <div class="panel-wrapper">
+                              <input ng-model-onblur type="text" class="panel-input" ng-model="dm['CustData']['Address']['Address2']"></input>
+                            </div>
+                          </td>
+                          <td class="panel-suffix-column"></td>
+                          <td class="panel-validation-image-column"></td>
+                        </tr>
+                        <tr class="panel-primitive-row">
+                          <td class="panel-label-column">
+                            <div>
+                              <label class="panel-label">City:</label>
+                              <label class="panel-label-mandatory-mark">*</label>
+                            </div>
+                          </td>
+                          <td class="panel-prefix-column"></td>
+                          <td class="panel-input-column">
+                            <div class="panel-wrapper">
+                              <input ng-model-onblur type="text" class="panel-input" id="id28933" name="id28933" ng-required="true" ng-class="{'panel-input-highlight' : form['id28933'].$invalid}" ng-model="dm['CustData']['Address']['City']"></input>
+                            </div>
+                          </td>
+                          <td class="panel-suffix-column"></td>
+                          <td class="panel-validation-image-column"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                  <td class="panel-primitive-container-cell">
+                    <table cellpadding="0" cellspacing="0">
+                      <tbody>
+                        <tr class="panel-primitive-row">
+                          <td class="panel-label-column">
+                            <div>
+                              <label class="panel-label">State</label>
+                              <label class="panel-label-mandatory-mark">*</label>
+                            </div>
+                          </td>
+                          <td class="panel-prefix-column"></td>
+                          <td class="panel-input-column">
+                            <select ng-model-onblur class="panel-select" ng-model="dm['CustData']['Address']['State']">
+                              <option value="AL">AL</option>
+                              <option value="AK">AK</option>
+                              <option value="CA">CA</option>
+                              <option value="CO">CO</option>
+                              <option value="HI">HI</option>
+                              <option value="IA">IA</option>
+                              <option value="NY">NY</option>
+                            </select>
+                          </td>
+                          <td class="panel-suffix-column"></td>
+                          <td class="panel-validation-image-column"></td>
+                        </tr>
+                        <tr class="panel-primitive-row">
+                          <td class="panel-label-column">
+                            <div>
+                              <label class="panel-label">Postal Code +4:</label>
+                              <label class="panel-label-mandatory-mark">*</label>
+                            </div>
+                          </td>
+                          <td class="panel-prefix-column"></td>
+                          <td class="panel-input-column">
+                            <div class="panel-wrapper">
+                              <input ng-model-onblur type="text" class="panel-input" id="id55161" name="id55161" ng-required="true" ng-class="{'panel-input-highlight' : form['id55161'].$invalid}" ng-model="dm['CustData']['Address']['Zip']"></input>
+                            </div>
+                          </td>
+                          <td class="panel-suffix-column"></td>
+                          <td class="panel-validation-image-column"></td>
+                        </tr>
+                        <tr class="panel-primitive-row">
+                          <td class="panel-label-column">
+                            <div>
+                              <label class="panel-label">Telephone:</label>
+                              <label class="panel-label-mandatory-mark">*</label>
+                            </div>
+                          </td>
+                          <td class="panel-prefix-column"></td>
+                          <td class="panel-input-column">
+                            <div class="panel-wrapper">
+                              <input ng-model-onblur type="text" class="panel-input" id="id19130" name="id19130" ng-required="true" ng-class="{'panel-input-highlight' : form['id19130'].$invalid}" ng-model="dm['CustData']['Address']['Telephone']"></input>
+                            </div>
+                          </td>
+                          <td class="panel-suffix-column"></td>
+                          <td class="panel-validation-image-column"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="panel-list">
+          <div class="panel-header">Previous Address</div>
+          <div class="panel-list-toolbar">
+            <table class="panel-list-toolbar-tbl" cellpadding="0" cellspacing="0">
+              <tbody>
+                <tr class="panel-list-toolbar-tbl-row">
+                  <td class="panel-list-toolbar-tbl-cell">
+                    <a href="" ng-click="addToList(dm['CustData']['PreviousAddress'], '/CustData/PreviousAddress')">
+                      <i class="pi pi-document-add pi-lg"></i>
+                    </a>
+                  </td>
+                  <td class="panel-list-toolbar-tbl-cell">
+                    <a href="" ng-click="removeFromList(dm['CustData']['PreviousAddress'], '/CustData/PreviousAddress')">
+                      <i class="pi pi-document-delete pi-lg"></i>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <table class="panel-list-tbl" cellpadding="0" cellspacing="0">
+            <thead>
+              <tr>
+                <th class="panel-list-tbl-header">Address Line 1:</th>
+                <th class="panel-list-tbl-header">Address Line 1:</th>
+                <th class="panel-list-tbl-header">City:</th>
+                <th class="panel-list-tbl-header">State</th>
+                <th class="panel-list-tbl-header">Postal Code +4:</th>
+                <th class="panel-list-tbl-header">Telephone:</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-class="{'panel-list-tbl-row-sel': $listIterator.$$selected, 'panel-list-tbl-row1': ($index % 2 == 0), 'panel-list-tbl-row2': ($index % 2 != 0) }" ng-repeat="$listIterator in dm['CustData']['PreviousAddress']" ng-form="innerForm" ng-click="selectListItem($event, $listIterator)">
+                <td class="panel-list-tbl-cell">
+                  <div class="panel-wrapper">
+                    <input ng-model-onblur type="text" class="panel-input" id="id68927" name="id68927" ng-required="true" ng-class="{'panel-input-highlight' : innerForm['id68927'].$invalid}" ng-model="$listIterator['Address1']"></input>
+                  </div>
+                </td>
+                <td class="panel-list-tbl-cell">
+                  <div class="panel-wrapper">
+                    <input ng-model-onblur type="text" class="panel-input" ng-model="$listIterator['Address2']"></input>
+                  </div>
+                </td>
+                <td class="panel-list-tbl-cell">
+                  <div class="panel-wrapper">
+                    <input ng-model-onblur type="text" class="panel-input" id="id49405" name="id49405" ng-required="true" ng-class="{'panel-input-highlight' : innerForm['id49405'].$invalid}" ng-model="$listIterator['City']"></input>
+                  </div>
+                </td>
+                <td class="panel-list-tbl-cell">
+                  <select ng-model-onblur class="panel-select" ng-model="$listIterator['State']">
+                    <option value="AL">AL</option>
+                    <option value="AK">AK</option>
+                    <option value="CA">CA</option>
+                    <option value="CO">CO</option>
+                    <option value="HI">HI</option>
+                    <option value="IA">IA</option>
+                    <option value="NY">NY</option>
+                  </select>
+                </td>
+                <td class="panel-list-tbl-cell">
+                  <div class="panel-wrapper">
+                    <input ng-model-onblur type="text" class="panel-input" id="id67432" name="id67432" ng-required="true" ng-class="{'panel-input-highlight' : innerForm['id67432'].$invalid}" ng-model="$listIterator['Zip']"></input>
+                  </div>
+                </td>
+                <td class="panel-list-tbl-cell">
+                  <div class="panel-wrapper">
+                    <input ng-model-onblur type="text" class="panel-input" id="id76431" name="id76431" ng-required="true" ng-class="{'panel-input-highlight' : innerForm['id76431'].$invalid}" ng-model="$listIterator['Telephone']"></input>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<iframe ng-show="showNestedDM" class="panel-list-dialog-modal-iframe"style="width: {{sizes.frameWidth}}; height: {{sizes.frameHeight}};" src="about:blank"></iframe>
+<div ng-show="showNestedDM" class="panel-list-dialog" style="left: {{sizes.dialogLeft}}; top: {{sizes.dialogTop}}"><div class="panel-list-dialog-title"><span class="panel-list-dialog-title-text">{{nestedDMTitle}}</span><input type="button" class="panel-list-dialog-close" ng-click="closeNestedList()"></input></div><div class="panel-list-dialog-breadcrumb"><span class="panel-list-dialog-breadcrumb-item" ng-repeat="bCrumb in nestedDMs"><a href="" ng-click="showNestedList($index)" ng-show="!$last">{{bCrumb.label}}</a><span ng-show="$last">{{bCrumb.label}}</span><span ng-show="!$last"> &raquo; </span></span></div><div class="panel-list-dialog-content"></div><div class="panel-list-dialog-footer"><input type="button" value="Close" class="panel-list-dialog-footer-control" ng-click="closeNestedList()" /></div></div>
+            
+<!-- START nestedMarkups -->
+            <div class='nestedMarkups' style='display: none'>
+
+</div>
+            <!-- END nestedMarkups -->
+            </div>
+            <div class='hideIfMobile'>
+               <table id='buttonTable'>
+                  <tr>
+                  </tr>
+               </table>
+            </div>
+      </div>
+   </body>
+</html>

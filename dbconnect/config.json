@@ -1,0 +1,8 @@
+{
+    "User": "root",
+    "Passwd": "_e9KzArAnb_xgB2UqfsKYv2p5LE=",
+    
+    "Net": "tcp",
+    "Addr": "localhost:3306",
+    "DBName": "rkd"
+}
