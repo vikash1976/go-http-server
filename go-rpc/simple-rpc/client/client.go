@@ -4,6 +4,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"time"
 
 	pb "github.com/vikash1976/go-rpc/simple-rpc/pb"
 	"golang.org/x/net/context"
@@ -23,6 +24,7 @@ func main() {
 	}
 	defer conn.Close()
 	c := pb.NewHelloWorldClient(conn)
+
 	name := defaultName
 	if len(os.Args) > 1 {
 		name = os.Args[1]
@@ -46,9 +48,13 @@ func main() {
 
 func callSayHello(c pb.HelloWorldClient, name string) {
 
-	r, err := c.SayHello(context.Background(), &pb.ToWhom{Name: name})
+	ctx, cancel := context.WithTimeout(context.Background(), 150*time.Millisecond)
+	defer cancel()
+	r, err := c.SayHello(ctx, &pb.ToWhom{Name: name})
 	if err != nil {
-		log.Fatalf("Couldn't greet: %v\n", err)
+		log.Printf("Couldn't greet: %v\n", err) //changed from Fatalf to Printf,
+		//as i wish to continue other functions, Fatalf calls os.Exit(1) internally.
+		return
 	}
 	log.Printf("Greeting Message: %v\n", r.GreetMessage)
 

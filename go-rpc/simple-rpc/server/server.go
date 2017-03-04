@@ -3,6 +3,7 @@ package main
 import (
 	"io"
 	"log"
+	"math/rand"
 	"net"
 	"net/http"
 	"strings"
@@ -21,7 +22,15 @@ const (
 type server struct{}
 
 func (s *server) SayHello(ctx context.Context, in *pb.ToWhom) (*pb.Greeting, error) {
-	return &pb.Greeting{GreetMessage: "Hello " + in.Name}, nil
+	d := time.Millisecond * time.Duration((50 * rand.Intn(5)))
+	log.Printf("Waiting time is: %v\n", d)
+	select {
+	case <-time.After(d):
+		return &pb.Greeting{GreetMessage: "Hello " + in.Name}, nil
+	case <-ctx.Done():
+		log.Println("Context Timedout")
+		return nil, ctx.Err()
+	}
 }
 
 func (s *server) SayMoreHellos(in *pb.ToWhom, stream pb.HelloWorld_SayMoreHellosServer) error {
