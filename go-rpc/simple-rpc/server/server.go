@@ -62,9 +62,7 @@ func (s *server) SayHelloToMany(stream pb.HelloWorld_SayHelloToManyServer) error
 		if err != nil {
 			return err
 		}
-
 	}
-
 }
 
 func (s *server) LetsTalk(stream pb.HelloWorld_LetsTalkServer) error {
@@ -87,10 +85,8 @@ func (s *server) LetsTalk(stream pb.HelloWorld_LetsTalkServer) error {
 			}
 			time.Sleep(time.Millisecond * 100)
 		}
-
 	}
 }
-
 func main() {
 	lis, err := net.Listen("tcp", port)
 	if err != nil {

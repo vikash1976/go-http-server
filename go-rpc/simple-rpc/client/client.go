@@ -57,7 +57,6 @@ func callSayHello(c pb.HelloWorldClient, name string) {
 		return
 	}
 	log.Printf("Greeting Message: %v\n", r.GreetMessage)
-
 }
 
 func callSayMoreHellos(c pb.HelloWorldClient, name string) {

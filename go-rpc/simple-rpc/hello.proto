@@ -1,7 +1,5 @@
 syntax = "proto3";
-
 package hello;
-
 service HelloWorld {
     rpc SayHello(ToWhom) returns (Greeting) {}
     rpc SayMoreHellos(ToWhom) returns (stream Greeting) {}
@@ -11,7 +9,6 @@ service HelloWorld {
 message ToWhom {
     string name = 1;
 }
-
 message Greeting {
     string greetMessage = 1;
 }

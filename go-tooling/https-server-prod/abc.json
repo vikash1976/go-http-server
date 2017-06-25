@@ -1,0 +1,361 @@
+{
+	"pluginId": "timeOffCalendar",
+	"name": "US Holidays",
+	"events": [{
+		"start": 1489343400000,
+		"end": 1489429740000,
+		"title": "New Event",
+		"id": "a0e9e561-9964-4c6b-9310-994054c08d57",
+		"allDay": true,
+		"description": "",
+		"scheduling": {
+			"recurrenceInterval": "none",
+			"showRecurrenceOption": true,
+			"executionTime": "00:00 AM Asia/Kolkata",
+			"startTimeStamp": 1489343400000,
+			"endTimeStamp": 1489429740000,
+			"showEndDateOption": false,
+			"endDateOptional": true,
+			"noEndDate": false,
+			"showAllDayOption": true,
+			"allDay": true,
+			"recurringEvent": false,
+			"active": true,
+			"recurrenceRange": {
+				"endDate": "2017-03-13",
+				"startDate": "2017-03-13",
+				"occurences": 1,
+				"endMode": "noEnd"
+			},
+			"dailyRecurrenceOptions": {
+				"daysRecurrence": "interval",
+				"daysIntervalCount": 1
+			},
+			"weeklyRecurrenceOptions": {
+				"recurrenceWeekCount": 1,
+				"mondays": false,
+				"tuesdays": true,
+				"wednesdays": false,
+				"thursdays": true,
+				"fridays": false,
+				"saturdays": false,
+				"sundays": false
+			},
+			"monthlyRecurrenceOptions": {
+				"monthsRecurrence": "day",
+				"dayNumber": 15,
+				"month": 2,
+				"day": 2,
+				"dayIndex": 1,
+				"monthIndex": 1
+			},
+			"yearlyRecurrenceOptions": {
+				"yearlyRecurrence": "weekday",
+				"recurEveryYear": 1,
+				"onMonth": 11,
+				"onDay": 3,
+				"onTheXDay": 2,
+				"onTheXDayName": 3,
+				"onTheMonth": 11
+			}
+		},
+		"type": "timeOff"
+	}, {
+		"start": 1488997800000,
+		"end": 1489084140000,
+		"title": "New Event",
+		"id": "aaf05a94-e97a-432a-a77c-220f744a395b",
+		"allDay": true,
+		"description": "",
+		"scheduling": {
+			"recurrenceInterval": "none",
+			"showRecurrenceOption": true,
+			"executionTime": "00:00 AM Asia/Calcutta",
+			"startTimeStamp": 1488997800000,
+			"endTimeStamp": 1489084140000,
+			"showEndDateOption": false,
+			"endDateOptional": true,
+			"noEndDate": false,
+			"showAllDayOption": true,
+			"allDay": true,
+			"recurringEvent": false,
+			"active": true,
+			"recurrenceRange": {
+				"endDate": "2017-03-09",
+				"startDate": "2017-03-09",
+				"occurences": 1,
+				"endMode": "noEnd"
+			},
+			"dailyRecurrenceOptions": {
+				"daysRecurrence": "interval",
+				"daysIntervalCount": 1
+			},
+			"weeklyRecurrenceOptions": {
+				"recurrenceWeekCount": 1,
+				"mondays": false,
+				"tuesdays": true,
+				"wednesdays": false,
+				"thursdays": true,
+				"fridays": false,
+				"saturdays": false,
+				"sundays": false
+			},
+			"monthlyRecurrenceOptions": {
+				"monthsRecurrence": "day",
+				"dayNumber": 15,
+				"month": 2,
+				"day": 2,
+				"dayIndex": 1,
+				"monthIndex": 1
+			},
+			"yearlyRecurrenceOptions": {
+				"yearlyRecurrence": "weekday",
+				"recurEveryYear": 1,
+				"onMonth": 11,
+				"onDay": 3,
+				"onTheXDay": 2,
+				"onTheXDayName": 3,
+				"onTheMonth": 11
+			}
+		},
+		"type": "timeOff"
+	}, {
+		"start": 1489084200000,
+		"end": 1489170540000,
+		"title": "New Event",
+		"id": "670db728-fb7e-4b15-839d-ccb756fbf2f1",
+		"allDay": true,
+		"description": "",
+		"scheduling": {
+			"recurrenceInterval": "none",
+			"showRecurrenceOption": true,
+			"executionTime": "00:00 AM Asia/Calcutta",
+			"startTimeStamp": 1489084200000,
+			"endTimeStamp": 1489170540000,
+			"showEndDateOption": false,
+			"endDateOptional": true,
+			"noEndDate": false,
+			"showAllDayOption": true,
+			"allDay": true,
+			"recurringEvent": false,
+			"active": true,
+			"recurrenceRange": {
+				"endDate": "2017-03-10",
+				"startDate": "2017-03-10",
+				"occurences": 1,
+				"endMode": "noEnd"
+			},
+			"dailyRecurrenceOptions": {
+				"daysRecurrence": "interval",
+				"daysIntervalCount": 1
+			},
+			"weeklyRecurrenceOptions": {
+				"recurrenceWeekCount": 1,
+				"mondays": false,
+				"tuesdays": true,
+				"wednesdays": false,
+				"thursdays": true,
+				"fridays": false,
+				"saturdays": false,
+				"sundays": false
+			},
+			"monthlyRecurrenceOptions": {
+				"monthsRecurrence": "day",
+				"dayNumber": 15,
+				"month": 2,
+				"day": 2,
+				"dayIndex": 1,
+				"monthIndex": 1
+			},
+			"yearlyRecurrenceOptions": {
+				"yearlyRecurrence": "weekday",
+				"recurEveryYear": 1,
+				"onMonth": 11,
+				"onDay": 3,
+				"onTheXDay": 2,
+				"onTheXDayName": 3,
+				"onTheMonth": 11
+			}
+		},
+		"type": "timeOff"
+	}, {
+		"start": 1489516200000,
+		"end": 1489602540000,
+		"title": "New Event",
+		"id": "f792cef8-fd74-4aa0-9585-490b0a4daa5c",
+		"allDay": true,
+		"description": "",
+		"scheduling": {
+			"recurrenceInterval": "none",
+			"showRecurrenceOption": true,
+			"executionTime": "00:00 AM Asia/Calcutta",
+			"startTimeStamp": 1489516200000,
+			"endTimeStamp": 1489602540000,
+			"showEndDateOption": false,
+			"endDateOptional": true,
+			"noEndDate": false,
+			"showAllDayOption": true,
+			"allDay": true,
+			"recurringEvent": false,
+			"active": true,
+			"recurrenceRange": {
+				"endDate": "2017-03-15",
+				"startDate": "2017-03-15",
+				"occurences": 1,
+				"endMode": "noEnd"
+			},
+			"dailyRecurrenceOptions": {
+				"daysRecurrence": "interval",
+				"daysIntervalCount": 1
+			},
+			"weeklyRecurrenceOptions": {
+				"recurrenceWeekCount": 1,
+				"mondays": false,
+				"tuesdays": true,
+				"wednesdays": false,
+				"thursdays": true,
+				"fridays": false,
+				"saturdays": false,
+				"sundays": false
+			},
+			"monthlyRecurrenceOptions": {
+				"monthsRecurrence": "day",
+				"dayNumber": 15,
+				"month": 2,
+				"day": 2,
+				"dayIndex": 1,
+				"monthIndex": 1
+			},
+			"yearlyRecurrenceOptions": {
+				"yearlyRecurrence": "weekday",
+				"recurEveryYear": 1,
+				"onMonth": 11,
+				"onDay": 3,
+				"onTheXDay": 2,
+				"onTheXDayName": 3,
+				"onTheMonth": 11
+			}
+		},
+		"type": "timeOff"
+	}, {
+		"start": 1488911400000,
+		"end": 1488997740000,
+		"title": "New Event",
+		"id": "69e60da3-daa8-4448-b4f8-7c5d55ca6f7d",
+		"allDay": true,
+		"description": "",
+		"scheduling": {
+			"recurrenceInterval": "none",
+			"showRecurrenceOption": true,
+			"executionTime": "00:00 AM Asia/Calcutta",
+			"startTimeStamp": 1488911400000,
+			"endTimeStamp": 1488997740000,
+			"showEndDateOption": false,
+			"endDateOptional": true,
+			"noEndDate": false,
+			"showAllDayOption": true,
+			"allDay": true,
+			"recurringEvent": false,
+			"active": true,
+			"recurrenceRange": {
+				"endDate": "2017-03-08",
+				"startDate": "2017-03-08",
+				"occurences": 1,
+				"endMode": "noEnd"
+			},
+			"dailyRecurrenceOptions": {
+				"daysRecurrence": "interval",
+				"daysIntervalCount": 1
+			},
+			"weeklyRecurrenceOptions": {
+				"recurrenceWeekCount": 1,
+				"mondays": false,
+				"tuesdays": true,
+				"wednesdays": false,
+				"thursdays": true,
+				"fridays": false,
+				"saturdays": false,
+				"sundays": false
+			},
+			"monthlyRecurrenceOptions": {
+				"monthsRecurrence": "day",
+				"dayNumber": 15,
+				"month": 2,
+				"day": 2,
+				"dayIndex": 1,
+				"monthIndex": 1
+			},
+			"yearlyRecurrenceOptions": {
+				"yearlyRecurrence": "weekday",
+				"recurEveryYear": 1,
+				"onMonth": 11,
+				"onDay": 3,
+				"onTheXDay": 2,
+				"onTheXDayName": 3,
+				"onTheMonth": 11
+			}
+		},
+		"type": "timeOff"
+	}, {
+		"start": 1489429800000,
+		"end": 1489516140000,
+		"title": "New Event",
+		"id": "c7ebbad0-d6e6-460f-90dc-1df88efd1b27",
+		"allDay": true,
+		"description": "",
+		"scheduling": {
+			"recurrenceInterval": "none",
+			"showRecurrenceOption": true,
+			"executionTime": "00:00 AM Asia/Calcutta",
+			"startTimeStamp": 1489429800000,
+			"endTimeStamp": 1489516140000,
+			"showEndDateOption": false,
+			"endDateOptional": true,
+			"noEndDate": false,
+			"showAllDayOption": true,
+			"allDay": true,
+			"recurringEvent": false,
+			"active": true,
+			"recurrenceRange": {
+				"endDate": "2017-03-14",
+				"startDate": "2017-03-14",
+				"occurences": 1,
+				"endMode": "noEnd"
+			},
+			"dailyRecurrenceOptions": {
+				"daysRecurrence": "interval",
+				"daysIntervalCount": 1
+			},
+			"weeklyRecurrenceOptions": {
+				"recurrenceWeekCount": 1,
+				"mondays": false,
+				"tuesdays": true,
+				"wednesdays": false,
+				"thursdays": true,
+				"fridays": false,
+				"saturdays": false,
+				"sundays": false
+			},
+			"monthlyRecurrenceOptions": {
+				"monthsRecurrence": "day",
+				"dayNumber": 15,
+				"month": 2,
+				"day": 2,
+				"dayIndex": 1,
+				"monthIndex": 1
+			},
+			"yearlyRecurrenceOptions": {
+				"yearlyRecurrence": "weekday",
+				"recurEveryYear": 1,
+				"onMonth": 11,
+				"onDay": 3,
+				"onTheXDay": 2,
+				"onTheXDayName": 3,
+				"onTheMonth": 11
+			}
+		},
+		"type": "timeOff"
+	}],
+	"recurringEvents": [],
+	"importedCalendars": []
+}
